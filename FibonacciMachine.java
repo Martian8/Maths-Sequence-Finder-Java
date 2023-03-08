@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 /**This is basically useless since it hits the max Long quite quickly, it's more of a proof of concept */
 public class FibonacciMachine implements SeriesMachine{
+    /**Converts from a text file into an ArrayList */
     private ArrayList<Long> fibonacciReader()throws IOException{
         ArrayList<Long> fibonacciList = new ArrayList<Long>();
         /**Reads text file */
@@ -23,6 +24,8 @@ public class FibonacciMachine implements SeriesMachine{
         fibonacciFile.close();
         return fibonacciList;
     }
+    /**This is the function that does the actual maths behind finding fibonacci numbers (and runs the other functions) */
+
     public void calculate(Integer max) throws IOException{
         ArrayList<Long> fibonacciList = new ArrayList<Long>(fibonacciReader());
         for(int num=0; num<max; num++){
@@ -34,6 +37,7 @@ public class FibonacciMachine implements SeriesMachine{
         }
         fibonacciWriter(fibonacciList);
     }
+    /**This function writes the ArrayList back into the file */
     private void fibonacciWriter(ArrayList<Long> fibonacciList) throws FileNotFoundException{
         PrintWriter writer = new PrintWriter("fibonacci.txt");
         for (Long fibonacci : fibonacciList){

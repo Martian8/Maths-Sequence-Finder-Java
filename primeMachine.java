@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class PrimeMachine implements SeriesMachine{
+    /**Converts from a text file into an ArrayList */
     private ArrayList<Integer> primeReader()throws IOException{
         ArrayList<Integer> primeList = new ArrayList<Integer>();
         /**Reads text file */
@@ -23,6 +24,7 @@ public class PrimeMachine implements SeriesMachine{
         primeFile.close();
         return primeList;
     }
+    /**This is the function that does the actual maths behind finding prime numbers (and runs the other functions) */
     public void calculate(Integer max) throws IOException{
         ArrayList<Integer> primeList = new ArrayList<Integer>(primeReader());
         boolean isPrime = true;
@@ -46,6 +48,7 @@ public class PrimeMachine implements SeriesMachine{
         }
         primeWriter(primeList);
     }
+    /**This function writes the ArrayList back into the file */
     private void primeWriter(ArrayList<Integer> primeList) throws FileNotFoundException{
         PrintWriter writer = new PrintWriter("primes.txt");
         for (Integer prime : primeList){
