@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class primeMachine {
-    public ArrayList<Integer> primeReader()throws IOException{
+public class PrimeMachine implements SeriesMachine{
+    private ArrayList<Integer> primeReader()throws IOException{
         ArrayList<Integer> primeList = new ArrayList<Integer>();
         /**Reads text file */
         BufferedReader primeFile = new BufferedReader(new FileReader("primes.txt"));
@@ -23,11 +23,11 @@ public class primeMachine {
         primeFile.close();
         return primeList;
     }
-    public ArrayList<Integer> primeCalculator(ArrayList<Integer> primeList, Integer max){
+    public void calculate(Integer max) throws IOException{
+        ArrayList<Integer> primeList = new ArrayList<Integer>(primeReader());
         boolean isPrime = true;
         Integer highestPrime=primeList.get(primeList.size()-1);
         for(int num=highestPrime; num<highestPrime+max; num++){
-            isPrime = true;
             for(int prime=0; prime<primeList.size(); prime++){
                 if(num%primeList.get(prime)==0){
                     isPrime =false;
@@ -40,14 +40,18 @@ public class primeMachine {
             if(isPrime==true){
                 primeList.add(num);
             }
+            else{
+                max+=1;
+            }
         }
-        return primeList;
+        primeWriter(primeList);
     }
-    public void primeWriter(ArrayList<Integer> primeList) throws FileNotFoundException{
+    private void primeWriter(ArrayList<Integer> primeList) throws FileNotFoundException{
         PrintWriter writer = new PrintWriter("primes.txt");
         for (Integer prime : primeList){
             writer.write(prime+"\n");
         }
         writer.close();
     }
+
 }
