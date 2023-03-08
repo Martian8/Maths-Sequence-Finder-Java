@@ -1,4 +1,2 @@
 # Prime-Finder-Java
-Much faster than the python version I made
-
-My first java project.
+My first java project, it's a lot faster than a similar python version i made.
